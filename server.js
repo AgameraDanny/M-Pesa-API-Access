@@ -14,6 +14,7 @@ const usersFilePath = "./users.json";
 
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static("public"));
 
 // Multer for file uploads
 const upload = multer({ dest: "uploads/" });
@@ -181,7 +182,7 @@ app.post("/api/send_stk_push", async (req, res) => {
           PartyA: formattedPhoneNumber,
           PartyB: "174379",
           PhoneNumber: formattedPhoneNumber,
-          CallBackURL: "https://yourcallbackurl.com/callback",
+          CallBackURL: "https://m-pesa-api-access.onrender.com/callback",
           AccountReference: accountReference,
           TransactionDesc: transactionDesc,
         },
@@ -348,7 +349,7 @@ app.post("/api/withdraw", upload.single("certificate"), async (req, res) => {
           PartyB: formattedPhoneNumber,
           Remarks: remarks,
           QueueTimeOutURL: "https://mydomain.com/b2c/queue",
-          ResultURL: "https://test-mpesa.onrender.com//api/withdraw/result",
+          ResultURL: "https://m-pesa-api-access.onrender.com/api/withdraw/result",
           Occasion: "Withdrawal",
         },
       },
@@ -451,7 +452,7 @@ app.post("/api/transaction_status", upload.single("certificate"), async (req, re
         TransactionID: transactionId,
         PartyA: "600979", // Replace with your PartyA
         IdentifierType: "4",
-        ResultURL: "https://yourdomain.com/TransactionStatus/result/",
+        ResultURL: "https://m-pesa-api-access.onrender.com/api/transaction_status/result",
         QueueTimeOutURL: "https://yourdomain.com/TransactionStatus/queue/",
         Remarks: "Ok",
         Occasion: "",
